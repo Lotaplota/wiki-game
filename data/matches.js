@@ -1,0 +1,88 @@
+import { players } from "../data/players.js";
+
+export let matches = JSON.parse(localStorage.getItem('matches')) || 
+[{
+  id: 'YYMMDDa#',
+  start: 'Start Page',
+  goal: 'Goal Page',
+  playerData: [{
+    playerId: '01',
+    clicks: 99
+  }, {
+    playerId: '02',
+    clicks: 1
+  }, {
+    playerId: '03',
+    clicks: 99
+  }],
+  winners: ['02'],
+  date: '2024-08-25T21:57:00Z'
+}]
+
+function saveMatches() {
+  localStorage.setItem('matches', JSON.stringify(matches));
+}
+
+// I've only used this next function once to add the 'winners' property to the matches' data
+// May be useful in the future, so I'm keeping it in
+function setWins() {
+  matches.forEach(match => {
+    let matchClicks = []; // Starts as a high, unreachable number
+    
+    // Setting the lowest value as the goal value for the winner
+    match.playerData.forEach(participant => {
+      matchClicks.push(participant.clicks);
+    })
+    
+    let minimumClicks = Math.min(...matchClicks);
+
+    // Pushing the winners to the array
+    let winners = [];
+    match.playerData.forEach(participant => {
+      if (participant.clicks === minimumClicks) {
+        winners.push(participant.playerId);
+      }
+    })
+
+    match.winners = winners;
+    saveMatches();
+  });
+}
+
+export function renderMatchList() {
+  const matchListHTML = document.querySelector(".js-match-list-items");
+  let newHTML = '';
+  
+  matches.forEach(match => {
+    // Each participant in the match will have it's own <div> with their scores from each game
+    let playerDataHTML = '';
+    
+    match.playerData.forEach((participant) => {
+      let matchingPlayer;
+
+      // Loop through the player list to find the matching player
+      players.forEach(player => {
+        if (participant.playerId === player.id) {
+          matchingPlayer = player;
+        }
+      })
+
+      playerDataHTML += `
+        <div class="player-score">
+          ${matchingPlayer.name}: ${participant.clicks}
+        </div>
+      `
+    })
+
+    newHTML +=
+    `
+      <tr>
+        <td>${match.start} → ${match.goal}</td>
+        <td>${playerDataHTML}</td>
+        <td>${match.date}</td>
+      </tr>
+    `;
+  });
+  
+  matchListHTML.innerHTML = newHTML;
+}

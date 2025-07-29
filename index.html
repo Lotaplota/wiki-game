@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jelutewiki</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
+<body class="p-5">
+  <main class="container bg-dark-subtle rounded rounded-4 pb-3">
+    <!-- Podium section -->
+    <section class="p-3 row g-2">
+      <div class="col-12">
+        <article class="card card-1st bg-warning align-items-center w-50 m-auto shadow">
+          <h2>#1</h2>
+          <h3>Fulano</h3>
+        </article>
+      </div>
+      <div class="col-6">
+        <article class="card d-flex shadow">
+          <div class="d-flex align-items-center justify-content-center">
+            <h2 class="me-2">#2</h2>
+            <h3 class="overflow-hidden">Ciclano</h3>
+          </div>
+        </article>
+      </div>
+      <div class="col-6">
+        <article class="card d-flex shadow">
+          <div class="d-flex gap align-items-center justify-content-center">
+            <h2 class="me-2">#3</h2>
+            <h3>Beltrano</h3>
+          </div>
+        </article>
+      </div>
+    </section>
+    <hr>
+
+    <!-- Game history -->
+    <section class="p-3">
+      <!-- Listed games -->
+      <table class="table table-sm table-bordered text-center">
+        <thead class="table-dark">
+          <tr>
+            <th class="align-content-center">Start → Goal</th>
+            <th class="align-content-center">Scores</th>
+            <th class="align-content-center">Date</th>
+          </tr>
+        </thead>
+        <tbody class="js-match-list-items">
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Control buttons -->
+    <section class="row justify-content-center p-3">
+      <button class="btn col-9 btn-primary add-button"><h2>+</h2></button>
+      <button class="btn col-3 btn-outline-success"><h2><i class="bi-pencil"></i></h2></button>
+    </section>
+  </main>
+
+  <script type="module" src="scripts/general.js"></script>
+</body>
+</html>
