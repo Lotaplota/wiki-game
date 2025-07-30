@@ -1,17 +1,17 @@
 import { matches } from './matches.js';
 
-export const players = [
+export const players = JSON.parse(localStorage.getItem('players')) || [
   {
     id: '01',
-    name: 'lucas',
+    name: 'Lucas',
     score: 0
   }, {
     id: '02',
-    name: 'territo',
+    name: 'Territo',
     score: 0
   }, {
     id: '03',
-    name: 'jéssika',
+    name: 'Jéssika',
     score: 0
   }
 ]
@@ -21,6 +21,11 @@ export function updateScore() {
   players.forEach(player => {
     
   })
+}
+
+export function orderPlayers() {
+  const decreasingPlayers = players.sort((a, b) => b.score - a.score);
+  return decreasingPlayers;
 }
 
 export function getPlayer(id) {

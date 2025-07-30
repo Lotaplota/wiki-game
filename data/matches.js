@@ -1,7 +1,7 @@
 import { players } from "../data/players.js";
 
-export let matches = JSON.parse(localStorage.getItem('matches')) || 
-[{
+export let matches = JSON.parse(localStorage.getItem('matches')) || [
+{
   id: 'YYMMDDa#',
   start: 'Start Page',
   goal: 'Goal Page',
@@ -47,6 +47,17 @@ function setWins() {
     match.winners = winners;
     saveMatches();
   });
+}
+
+export function generateMatchId () {
+  const table = '0123456789abcdefghijklmnopqrstuvwxyz';
+  let result = '';
+
+  for (let i = 0; i < 8; i++) {
+    result += table.charAt(Math.floor(Math.random() * table.length));
+  }
+
+  return result;
 }
 
 export function renderMatchList() {
