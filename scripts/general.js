@@ -18,6 +18,7 @@ function distributePoints() {
     player.score = 0;
   })
 
+  // For each match, loop through each winner and distribute their scores
   matches.forEach(match => {
     match.winners.forEach(winnerId => {
       getPlayer(winnerId).score += matchPoints(match);
