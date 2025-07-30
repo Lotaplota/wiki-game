@@ -1,9 +1,22 @@
+.podium-points-text {
+  margin-top: 0px;
+  font-size: small;
+}
+
 .card {
     /* box-shadow: 2px 2px 4px rgba(0, 0, 0, .25); */
 }
 
-.card-1st {
-    
+.place-1-card {
+  background-color: rgb(255, 223, 43) !important;
+}
+
+.place-2-card {
+  background-color: rgb(213, 233, 233) !important;
+}
+
+.place-3-card {
+  background-color: rgb(179, 127, 61) !important;
 }
 
 .add-button {

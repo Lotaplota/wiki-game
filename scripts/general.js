@@ -10,6 +10,7 @@ function renderPodium() {
 
   for (let i = 1; i <= 3; i++) {
     document.querySelector(`.js-place-${i}`).innerHTML = playerList[i - 1].name;
+    document.querySelector(`.js-place-${i}-points`).innerHTML = playerList[i - 1].score;
   }
 }
 
