@@ -2,8 +2,32 @@ import { renderMatchList, matches, generateMatchId } from "../data/matches.js";
 import { getPlayer, players, updateScore, savePlayerData, orderPlayers} from '../data/players.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
+let selectedPlayers = []; // Temporary variable to store the selected players
+
 renderMatchList();
 renderPodium();
+renderParticipantSelection();
+console.log(players); // DONKEY
+
+function renderParticipantSelection() {
+  const form = document.querySelector('.js-participant-selection');
+  let html = '';
+
+  players.forEach(player => {
+    html += `
+      <label><input type="checkbox" name="participant-option" value="${player.id}">${player.name}</label>
+    `;
+  });
+
+  html += `<button type="submit">Próximo</button>`;
+
+  form.innerHTML = html;
+
+  form.addEventListener('submit', event => {
+    const checkboxes = document.querySelectorAll('input[name="participant-option"]:checked');
+    console.log(checkboxes); // CONTINUE
+  })
+}
 
 function renderPodium() {
   const playerList = orderPlayers();

@@ -24,7 +24,7 @@ export function updateScore() {
 }
 
 export function orderPlayers() {
-  const decreasingPlayers = players.sort((a, b) => b.score - a.score);
+  const decreasingPlayers = [...players].sort((a, b) => b.score - a.score); // This ... thing is a bit tricky...
   return decreasingPlayers;
 }
 
