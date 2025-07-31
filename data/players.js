@@ -1,4 +1,4 @@
-import { matches } from './matches.js';
+import { matches, matchPoints} from './matches.js';
 
 export const players = JSON.parse(localStorage.getItem('players')) || [
   {
@@ -15,13 +15,6 @@ export const players = JSON.parse(localStorage.getItem('players')) || [
     score: 0
   }
 ]
-
-// Implement this when you add the event button
-export function updateScore() {
-  players.forEach(player => {
-    
-  })
-}
 
 export function orderPlayers() {
   const decreasingPlayers = [...players].sort((a, b) => b.score - a.score); // This ... thing is a bit tricky...
@@ -40,4 +33,20 @@ export function getPlayer(id) {
 
 export function savePlayerData() {
   localStorage.setItem('players', JSON.stringify(players));
+}
+
+export function updateScore() {
+  // Resetting players' scores
+  players.forEach(player => {
+    player.score = 0;
+  })
+
+  // For each match, loop through each winner and distribute their scores
+  matches.forEach(match => {
+    match.winners.forEach(winnerId => {
+      getPlayer(winnerId).score += matchPoints(match);
+    });
+  });
+
+  savePlayerData();
 }

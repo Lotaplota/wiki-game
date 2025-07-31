@@ -1,4 +1,5 @@
-import { players } from "../data/players.js";
+import { players, updateScore } from "../data/players.js";
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 export let matches = JSON.parse(localStorage.getItem('matches')) || [
 {
@@ -19,34 +20,40 @@ export let matches = JSON.parse(localStorage.getItem('matches')) || [
   date: '2024-08-25T21:57:00Z'
 }]
 
-function saveMatches() {
+export function addMatch(start, goal, participantsArray) {
+  const newMatch = {
+    id: generateMatchId(),
+    start: start,
+    goal: goal,
+    playerData: participantsArray,
+    winners: decideWinners(participantsArray),
+    date: dayjs().format()
+  }
+
+  matches.push(newMatch);
+  updateScore();
+  saveMatches();
+}
+
+export function saveMatches() {
   localStorage.setItem('matches', JSON.stringify(matches));
 }
 
-// I've only used this next function once to add the 'winners' property to the matches' data
-// May be useful in the future, so I'm keeping it in
-function setWins() {
-  matches.forEach(match => {
-    let matchClicks = []; // Starts as a high, unreachable number
-    
-    // Setting the lowest value as the goal value for the winner
-    match.playerData.forEach(participant => {
-      matchClicks.push(participant.clicks);
-    })
-    
-    let minimumClicks = Math.min(...matchClicks);
+export function decideWinners(participantsData) {
+  // Finding the smallest amount of clicks
+  let matchClicks = participantsData.map(participant => participant.clicks);
+  let minimumClicks = Math.min(...matchClicks);
 
-    // Pushing the winners to the array
-    let winners = [];
-    match.playerData.forEach(participant => {
-      if (participant.clicks === minimumClicks) {
-        winners.push(participant.playerId);
-      }
-    })
+  let winners = [];
 
-    match.winners = winners;
-    saveMatches();
+  // Pushing the participants that clicked the less
+  participantsData.forEach(participant => {
+    if (participant.clicks === minimumClicks) {
+      winners.push(participant.playerId)
+    }
   });
+
+  return winners;
 }
 
 export function generateMatchId () {
@@ -96,4 +103,12 @@ export function renderMatchList() {
   });
   
   matchListHTML.innerHTML = newHTML;
+}
+
+export function matchPoints(match) {
+  const amountOfWinners = match.winners.length;
+  const amountOfLosers = match.playerData.length - amountOfWinners;
+
+  const points = amountOfLosers / amountOfWinners;
+  return points;
 }

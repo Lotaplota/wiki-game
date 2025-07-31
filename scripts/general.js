@@ -1,6 +1,5 @@
-import { renderMatchList, matches, generateMatchId } from "../data/matches.js";
+import { renderMatchList, matches, generateMatchId, decideWinners, saveMatches, addMatch } from "../data/matches.js";
 import { getPlayer, players, updateScore, savePlayerData, orderPlayers} from '../data/players.js';
-import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 let selectedPlayers = []; // Temporary variable to store the selected players
 
@@ -51,8 +50,9 @@ function renderAddMatchForm() {
       }
     }
 
-    // TODO uncomment the bit below after decideWinners() is implemented
-    // addMatch(startWiki, goalWiki, participantsData);
+    addMatch(startWiki, goalWiki, participantsData);
+    renderMatchList();
+    renderPodium();
   })
 }
 
@@ -63,31 +63,6 @@ function renderPodium() {
     document.querySelector(`.js-place-${i}`).innerHTML = playerList[i - 1].name;
     document.querySelector(`.js-place-${i}-points`).innerHTML = playerList[i - 1].score;
   }
-}
-
-function addMatch(start, goal, participantsArray) {
-  const newMatch = {
-    id: generateMatchId(),
-    start: start,
-    goal: goal,
-    playerData: participantsArray,
-    winners: decideWinners(participantsArray), // TODO
-    date: dayjs().format()
-  }
-
-  matches.push(newMatch);
-}
-
-function decidewinners() {
-  // TODO
-}
-
-function matchPoints(match) {
-  const amountOfWinners = match.winners.length;
-  const amountOfLosers = match.playerData.length - amountOfWinners;
-
-  const points = amountOfLosers / amountOfWinners;
-  return points;
 }
 
 function distributePoints() {
