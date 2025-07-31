@@ -6,26 +6,53 @@ let selectedPlayers = []; // Temporary variable to store the selected players
 
 renderMatchList();
 renderPodium();
-renderParticipantSelection();
-console.log(players); // DONKEY
+renderAddMatchForm();
 
-function renderParticipantSelection() {
+// Renders the form to add a new match
+function renderAddMatchForm() {
   const form = document.querySelector('.js-participant-selection');
   let html = '';
 
+  // This bit generates a number field for each player registered in 'players' 
   players.forEach(player => {
     html += `
-      <label><input type="checkbox" name="participant-option" value="${player.id}">${player.name}</label>
+      <div class="py-1">
+        <label>${player.name}: <input type="number" name="${player.id}-clicks" placeholder="00" class="player-clicks-field"></label>
+      </div>
     `;
   });
 
+  // This is just the submit button
   html += `<button type="submit">Próximo</button>`;
 
-  form.innerHTML = html;
+  form.innerHTML += html;
 
   form.addEventListener('submit', event => {
-    const checkboxes = document.querySelectorAll('input[name="participant-option"]:checked');
-    console.log(checkboxes); // CONTINUE
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    // Variables that will be passed to the addMatch() function
+    const startWiki = formData.get('start-wiki');
+    const goalWiki = formData.get('goal-wiki');
+    const participantsData = [];
+    
+    // This generates an array of objects on the format the playerData is stored in each match
+    // It should work just fine when passed into addMatch()
+    for (const [key, value] of formData.entries()) {
+      if (key.endsWith('-clicks') && value) {
+        const playerId = key.replace('-clicks', '');
+        const clicks = parseInt(value, 10)
+
+        participantsData.push({
+          playerId,
+          clicks
+        });
+      }
+    }
+
+    // TODO uncomment the bit below after decideWinners() is implemented
+    // addMatch(startWiki, goalWiki, participantsData);
   })
 }
 
@@ -43,12 +70,16 @@ function addMatch(start, goal, participantsArray) {
     id: generateMatchId(),
     start: start,
     goal: goal,
-    playerData: generatePlayerData(participantsArray), // TODO
-    winners: decideWinners(), // TODO
+    playerData: participantsArray,
+    winners: decideWinners(participantsArray), // TODO
     date: dayjs().format()
   }
 
   matches.push(newMatch);
+}
+
+function decidewinners() {
+  // TODO
 }
 
 function matchPoints(match) {

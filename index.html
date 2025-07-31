@@ -15,6 +15,8 @@
   <main class="container bg-dark-subtle rounded rounded-4 pb-3">
     <!-- Podium section -->
     <section class="p-3 row g-2">
+      
+      <!-- 1st place card -->
       <div class="col-12">
         <article class="card place-1-card align-items-center w-50 m-auto shadow">
           <h2>#1</h2>
@@ -22,6 +24,8 @@
           <div class="text-center podium-points-text">com <span class="js-place-1-points podium-points">ph</span> pontos</div>
         </article>
       </div>
+
+      <!-- 2nd place card -->
       <div class="col-6">
         <article class="card place-2-card d-flex shadow">
           <div class="align-items-center justify-content-center">
@@ -33,6 +37,8 @@
           </div>
         </article>
       </div>
+
+      <!-- 3rd place card -->
       <div class="col-6">
         <article class="card place-3-card d-flex shadow">
           <div class="d-flex gap align-items-center justify-content-center">
@@ -68,9 +74,9 @@
     </section>
   </main>
 
-  <form class="d-flex js-participant-selection">
-    <label><input type="checkbox" name="participant-option" value="1">player01</label>
-    <button type="submit">Próximo</button>
+  <form class="js-participant-selection">
+    <label>Wiki inicial: <input type="text" required name="start-wiki" placeholder="Cliques" class="start-wiki-field"></label><br>
+    <label>Wiki final: <input type="text" required name="goal-wiki" placeholder="Cliques" class="goal-wiki-field"></label>
   </form>
 
   <script type="module" src="scripts/general.js"></script>

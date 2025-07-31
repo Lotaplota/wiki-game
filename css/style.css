@@ -22,3 +22,11 @@
 .add-button {
     
 }
+
+.start-wiki-field, .goal-wiki-field {
+  width: 10rem;
+}
+
+.player-clicks-field {
+  width: 3rem;
+}
