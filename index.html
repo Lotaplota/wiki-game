@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
-<body class="p-5">
+<body class="p-5 d-flex">
   <main class="container bg-dark-subtle rounded rounded-4 pb-3">
     <!-- Podium section -->
     <section class="p-3 row g-2">
@@ -73,11 +73,9 @@
       <button class="btn col-3 btn-outline-success"><h2><i class="bi-pencil"></i></h2></button>
     </section>
   </main>
-
-  <form class="js-participant-selection">
-    <label>Wiki inicial: <input type="text" required name="start-wiki" placeholder="Título da página" class="start-wiki-field"></label><br>
-    <label>Wiki final: <input type="text" required name="goal-wiki" placeholder="Título da página" class="goal-wiki-field"></label>
-  </form>
+  <aside class="p-3">
+    <form class="js-participant-selection"></form>
+  </aside>
 
   <script type="module" src="scripts/general.js"></script>
 </body>

@@ -1,5 +1,5 @@
 import { renderMatchList, matches, generateMatchId, decideWinners, saveMatches, addMatch } from "../data/matches.js";
-import { getPlayer, players, updateScore, savePlayerData, orderPlayers} from '../data/players.js';
+import { getPlayer, addPlayer, players, updateScore, savePlayerData, orderPlayers} from '../data/players.js';
 
 let selectedPlayers = []; // Temporary variable to store the selected players
 
@@ -10,7 +10,15 @@ renderAddMatchForm();
 // Renders the form to add a new match
 function renderAddMatchForm() {
   const form = document.querySelector('.js-participant-selection');
+
+  // Emptying the form content to avoid duplicate information if this function gets called again
+  form.innerHTML = '';
   let html = '';
+
+  html += `
+    <label>Wiki inicial: <input type="text" required name="start-wiki" placeholder="Título da página" class="start-wiki-field"></label><br>
+      <label>Wiki final: <input type="text" required name="goal-wiki" placeholder="Título da página" class="goal-wiki-field"></label>
+  `
 
   // This bit generates a number field for each player registered in 'players' 
   players.forEach(player => {

@@ -50,3 +50,18 @@ export function updateScore() {
 
   savePlayerData();
 }
+
+// Adds a player with 0 score and 
+export function addPlayer(playerName) {
+  // Forces the id to be two digits long
+  const playerId = String((players.length + 1)).padStart(2, '0');
+
+  players.push({
+    id: playerId,
+    name: playerName,
+    score: 0
+  });
+
+  // Uncomment when done
+  // savePlayerData();
+}

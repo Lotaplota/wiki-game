@@ -1,2 +1,3 @@
-- [ ] implement the addMatch functionality
+- [x] implement the addMatch functionality
 - [ ] implement an Add Player button
+- [ ] add a delete match button, maybe on a hover after the user clicks the pencil button
