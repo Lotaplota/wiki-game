@@ -68,7 +68,7 @@ function renderAddMatchForm() {
     // This generates an array of objects on the format the playerData is stored in each match
     // It should work just fine when passed into addMatch()
     for (const [key, value] of formData.entries()) {
-      if (key.endsWith('-clicks') && value) {
+      if (key.endsWith('-clicks') && value && parseInt(value) != 0) {
         const playerId = key.replace('-clicks', '');
         const clicks = parseInt(value, 10)
 
