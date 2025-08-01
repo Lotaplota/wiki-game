@@ -16,11 +16,13 @@ export const players = JSON.parse(localStorage.getItem('players')) || [
   }
 ]
 
-export function orderPlayers() {
+// This order the players in decreasing order by their points, used mainly to render the podium
+export function orderPlayersByPoints() {
   const decreasingPlayers = [...players].sort((a, b) => b.score - a.score); // This ... thing is a bit tricky...
   return decreasingPlayers;
 }
 
+// Returns a player by their id
 export function getPlayer(id) {
   for (let i = 0; i < players.length; i++) {
     if (players[i].id === id) {
@@ -35,6 +37,7 @@ export function savePlayerData() {
   localStorage.setItem('players', JSON.stringify(players));
 }
 
+// Looks at all the matches and distributes the points made in each match
 export function updateScore() {
   // Resetting players' scores
   players.forEach(player => {
@@ -62,6 +65,5 @@ export function addPlayer(playerName) {
     score: 0
   });
 
-  // Uncomment when done
-  // savePlayerData();
+  savePlayerData();
 }

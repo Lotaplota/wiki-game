@@ -1,5 +1,5 @@
 import { renderMatchList, matches, generateMatchId, decideWinners, saveMatches, addMatch } from "../data/matches.js";
-import { getPlayer, addPlayer, players, updateScore, savePlayerData, orderPlayers} from '../data/players.js';
+import { getPlayer, addPlayer, players, updateScore, savePlayerData, orderPlayersByPoints} from '../data/players.js';
 
 let selectedPlayers = []; // Temporary variable to store the selected players
 
@@ -29,10 +29,31 @@ function renderAddMatchForm() {
     `;
   });
 
-  // This is just the submit button
-  html += `<button type="submit">Próximo</button>`;
+  // Adding the submit and add player lines
+  html += `
+    <div class="d-flex">
+      <div class="mb-3 input-group">
+        <input type="text" class="form-control js-add-player-field" placeholder="Novo Jogador">
+        <button class="btn btn-success js-add-player-button" type="button">+</button>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary my-2 w-100">Adicionar Partida</button>
+  `;
 
   form.innerHTML += html;
+
+  const addPlayerButton = document.querySelector('.js-add-player-button');
+  
+  addPlayerButton.addEventListener('click', () =>{
+    const newPlayerName = document.querySelector('.js-add-player-field').value;
+
+    if (newPlayerName) {
+      addPlayer(newPlayerName);
+      renderAddMatchForm();
+    } else {
+      alert('You have to inform the player\'s name')
+    }
+  })
 
   form.addEventListener('submit', event => {
     event.preventDefault();
@@ -62,10 +83,12 @@ function renderAddMatchForm() {
     renderMatchList();
     renderPodium();
   })
+
+
 }
 
 function renderPodium() {
-  const playerList = orderPlayers();
+  const playerList = orderPlayersByPoints();
 
   for (let i = 1; i <= 3; i++) {
     document.querySelector(`.js-place-${i}`).innerHTML = playerList[i - 1].name;
