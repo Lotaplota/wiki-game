@@ -1,4 +1,4 @@
-import { renderMatchList, matches, generateMatchId, decideWinners, saveMatches, addMatch } from "../data/matches.js";
+import { getMatch, renderMatchList, matches, generateMatchId, decideWinners, saveMatches, addMatch } from "../data/matches.js";
 import { getPlayer, addPlayer, players, updateScore, savePlayerData, orderPlayersByPoints} from '../data/players.js';
 
 let selectedPlayers = []; // Temporary variable to store the selected players
@@ -6,6 +6,28 @@ let selectedPlayers = []; // Temporary variable to store the selected players
 renderMatchList();
 renderPodium();
 renderAddMatchForm();
+deleteMatch('wyev2o9s');
+
+// Searches the matches array and deletes the match which id matches (no pun intended) the one passed
+function deleteMatch(matchId) { // CONTINUE not working...
+  let matchIndex;
+
+  for (let i = 0; i < matches.length; i++) {
+    if (matches[i].id === matchId) {
+      matchIndex = i;
+      break;
+    }
+  }
+
+  if (matchIndex) {
+    console.log(matches); // DONKEY
+    console.log('will delete, look!'); // DONKEY
+    matches.splice(matchIndex, 1);
+    console.log(matches); // DONKEY
+  } else {
+    console.log('There is no match with the id ' + matchId);
+  }
+}
 
 // Renders the form to add a new match
 function renderAddMatchForm() {

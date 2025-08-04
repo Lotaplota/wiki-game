@@ -20,6 +20,15 @@ export let matches = JSON.parse(localStorage.getItem('matches')) || [
   date: '2024-08-25T21:57:00Z'
 }]
 
+// Returns the match that matches the id given
+export function getMatch(matchId) {
+  for (let i = 0; i < matches.length; i++) {
+    if (matches[i].id === matchId) {
+      return matches[i];
+    }
+  }
+}
+
 export function addMatch(start, goal, participantsArray) {
   const newMatch = {
     id: generateMatchId(),
