@@ -1,7 +1,6 @@
 import { renderMatchList, matches, generateMatchId, decideWinners, saveMatches, addMatch } from "../data/matches.js";
 import { getPlayer, addPlayer, players, updateScore, savePlayerData, orderPlayersByPoints} from '../data/players.js';
-
-let selectedPlayers = []; // Temporary variable to store the selected players
+import { toFixedIfNecessary } from "./utils/tools.js";
 
 renderMatchList();
 renderPodium();
@@ -92,7 +91,8 @@ function renderPodium() {
 
   for (let i = 1; i <= 3; i++) {
     document.querySelector(`.js-place-${i}`).innerHTML = playerList[i - 1].name;
-    document.querySelector(`.js-place-${i}-points`).innerHTML = playerList[i - 1].score;
+    document.querySelector(`.js-place-${i}-points`)
+      .innerHTML = toFixedIfNecessary(playerList[i - 1].score, 2);
   }
 }
 
