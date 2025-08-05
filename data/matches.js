@@ -1,4 +1,4 @@
-import { players, updateScore } from "../data/players.js";
+import { players, updateScore, renderPodium } from "../data/players.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 export let matches = JSON.parse(localStorage.getItem('matches')) || [
