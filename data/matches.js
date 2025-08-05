@@ -101,10 +101,15 @@ export function renderMatchList() {
       `
     })
 
-    newHTML +=
+    newHTML += // CONTINUE
     `
       <tr>
-        <td>${match.start} → ${match.goal}</td>
+        <td>
+          <div class="position-relative">
+            <button class="btn btn-sm btn-danger delete-match-button js-delete-match-button" data-match-id="${match.id}">Del</button>
+            ${match.start} → ${match.goal}
+          </div>
+        </td>
         <td>${playerDataHTML}</td>
         <td>${match.date}</td>
       </tr>
