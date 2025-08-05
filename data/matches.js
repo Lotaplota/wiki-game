@@ -121,3 +121,26 @@ export function matchPoints(match) {
   const points = amountOfLosers / amountOfWinners;
   return points;
 }
+
+export function deleteMatch(matchId) {
+  const match = getMatch(matchId);
+  let matchIndex;
+
+  if (match) {
+    for (let i = 0; i < matches.length; i++) {
+      if (match.id === matches[i].id) {
+        matchIndex = i;
+        break;
+      }
+    }
+  } else {
+    console.log(`There is no match with the id "${matchId}"`);
+  }
+
+  // Deletes the item in the 'matches' saves the new array, and renders the match list, if the index is valid
+  if (matchIndex) {
+    matches.splice(matchIndex, 1);
+    saveMatches();
+    renderMatchList();
+  }
+}

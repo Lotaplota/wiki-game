@@ -1,32 +1,10 @@
-import { getMatch, renderMatchList, matches, generateMatchId, decideWinners, saveMatches, addMatch } from "../data/matches.js";
+import { getMatch, renderMatchList, matches, generateMatchId, decideWinners, saveMatches, addMatch, deleteMatch} from "../data/matches.js";
 import { getPlayer, addPlayer, players, updateScore, savePlayerData, orderPlayersByPoints} from '../data/players.js';
 import { toFixedIfNecessary } from "./utils/tools.js";
 
 renderMatchList();
 renderPodium();
 renderAddMatchForm();
-deleteMatch('wyev2o9s');
-
-// Searches the matches array and deletes the match which id matches (no pun intended) the one passed
-function deleteMatch(matchId) { // CONTINUE not working...
-  let matchIndex;
-
-  for (let i = 0; i < matches.length; i++) {
-    if (matches[i].id === matchId) {
-      matchIndex = i;
-      break;
-    }
-  }
-
-  if (matchIndex) {
-    console.log(matches); // DONKEY
-    console.log('will delete, look!'); // DONKEY
-    matches.splice(matchIndex, 1);
-    console.log(matches); // DONKEY
-  } else {
-    console.log('There is no match with the id ' + matchId);
-  }
-}
 
 // Renders the form to add a new match
 function renderAddMatchForm() {
@@ -108,9 +86,11 @@ function renderAddMatchForm() {
 
 }
 
+// Gets the players array, orders it and displays the first 3 players on the page
 function renderPodium() {
   const playerList = orderPlayersByPoints();
 
+  // Displays the name of the players and their scores up to 2 decimal places
   for (let i = 1; i <= 3; i++) {
     document.querySelector(`.js-place-${i}`).innerHTML = playerList[i - 1].name;
     document.querySelector(`.js-place-${i}-points`)
