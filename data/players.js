@@ -1,4 +1,5 @@
 import { matches, matchPoints} from './matches.js';
+import { toFixedIfNecessary } from "../scripts/utils/tools.js";
 
 export const players = JSON.parse(localStorage.getItem('players')) || [
   {
@@ -35,6 +36,18 @@ export function getPlayer(id) {
 
 export function savePlayerData() {
   localStorage.setItem('players', JSON.stringify(players));
+}
+
+// Gets the players array, orders it and displays the first 3 players on the page
+export function renderPodium() {
+  const playerList = orderPlayersByPoints();
+
+  // Displays the name of the players and their scores up to 2 decimal places
+  for (let i = 1; i <= 3; i++) {
+    document.querySelector(`.js-place-${i}`).innerHTML = playerList[i - 1].name;
+    document.querySelector(`.js-place-${i}-points`)
+      .innerHTML = toFixedIfNecessary(playerList[i - 1].score, 2);
+  }
 }
 
 // Looks at all the matches and distributes the points made in each match

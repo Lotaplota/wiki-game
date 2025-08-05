@@ -101,7 +101,7 @@ export function renderMatchList() {
       `
     })
 
-    newHTML += // CONTINUE
+    newHTML +=
     `
       <tr>
         <td>
@@ -117,6 +117,18 @@ export function renderMatchList() {
   });
   
   matchListHTML.innerHTML = newHTML;
+
+  // Adding event listeners for the delete button
+  const deleteMatchButtons = document.querySelectorAll('.js-delete-match-button');
+  deleteMatchButtons.forEach((button) => {
+    const matchId = button.dataset.matchId;
+
+    button.addEventListener('click', () => {
+      deleteMatch(matchId);
+      renderMatchList();
+      renderPodium();
+    })
+  })
 }
 
 export function matchPoints(match) {

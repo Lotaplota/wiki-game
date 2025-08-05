@@ -1,6 +1,5 @@
-import { getMatch, renderMatchList, matches, generateMatchId, decideWinners, saveMatches, addMatch, deleteMatch} from "../data/matches.js";
-import { getPlayer, addPlayer, players, updateScore, savePlayerData, orderPlayersByPoints} from '../data/players.js';
-import { toFixedIfNecessary } from "./utils/tools.js";
+import { renderMatchList, matches, addMatch} from "../data/matches.js";
+import { getPlayer, addPlayer, players, renderPodium, savePlayerData} from '../data/players.js';
 
 renderMatchList();
 renderPodium();
@@ -84,18 +83,6 @@ function renderAddMatchForm() {
   })
 
 
-}
-
-// Gets the players array, orders it and displays the first 3 players on the page
-function renderPodium() {
-  const playerList = orderPlayersByPoints();
-
-  // Displays the name of the players and their scores up to 2 decimal places
-  for (let i = 1; i <= 3; i++) {
-    document.querySelector(`.js-place-${i}`).innerHTML = playerList[i - 1].name;
-    document.querySelector(`.js-place-${i}-points`)
-      .innerHTML = toFixedIfNecessary(playerList[i - 1].score, 2);
-  }
 }
 
 function distributePoints() {
