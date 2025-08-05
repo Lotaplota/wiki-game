@@ -80,11 +80,12 @@ export function renderMatchList() {
   const matchListHTML = document.querySelector(".js-match-list-items");
   let newHTML = '';
   
-  matches.forEach(match => {
+  // Looping through the matches array in reverse order
+  for (let i = matches.length - 1; i >= 0; i--) {
     // Each participant in the match will have it's own <div> with their scores from each game
     let playerDataHTML = '';
     
-    match.playerData.forEach((participant) => {
+    matches[i].playerData.forEach((participant) => {
       let matchingPlayer;
 
       // Loop through the player list to find the matching player
@@ -106,15 +107,15 @@ export function renderMatchList() {
       <tr>
         <td>
           <div class="position-relative">
-            <button class="btn btn-sm btn-danger delete-match-button js-delete-match-button" data-match-id="${match.id}">Del</button>
-            ${match.start} → ${match.goal}
+            <button class="btn btn-sm btn-danger delete-match-button js-delete-match-button" data-match-id="${matches[i].id}">Del</button>
+            ${matches[i].start} → ${matches[i].goal}
           </div>
         </td>
         <td>${playerDataHTML}</td>
-        <td>${match.date}</td>
+        <td>${matches[i].date}</td>
       </tr>
     `;
-  });
+  };
   
   matchListHTML.innerHTML = newHTML;
 
