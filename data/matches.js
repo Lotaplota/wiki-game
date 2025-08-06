@@ -1,5 +1,6 @@
 import { players, updateScore, renderPodium } from "../data/players.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import { toFixedIfNecessary } from "../scripts/utils/tools.js";
 
 export let matches = JSON.parse(localStorage.getItem('matches')) || [
 {
@@ -100,9 +101,15 @@ export function renderMatchList() {
       : ''
       ;
 
+      let givenPoints = isWinner === 'winner' // Maybe change this later to be more elegant
+      ? `<span class="points-popup">+${toFixedIfNecessary(matchPoints(matches[i]), 2)}</span>` // TODO get the match points
+      : ''
+      ;
+
       playerDataHTML += `
         <div class="player-score ${isWinner}">
           ${matchingPlayer.name}: ${participant.clicks}
+          ${givenPoints}
         </div>
       `
     })

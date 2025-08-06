@@ -8,6 +8,28 @@
   border: solid white 1px;
   border-radius: .25rem;
   box-sizing: border-box;
+  position: relative;
+}
+
+.points-popup {
+  opacity: 0;
+  padding-inline: 4px;
+  background-color: rgb(20, 120, 20);
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  text-align: center;
+  position: absolute;
+  left: 110%;
+  transform: translateX(0%); /* Is this necessary? */
+  transition:
+    opacity .2s,
+    transform .2s;
+}
+
+.winner:hover .points-popup {
+  transform: translateX(10%);
+  opacity: 1;
 }
 
 .card {
