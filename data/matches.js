@@ -119,14 +119,14 @@ export function renderMatchList() {
       <tr>
         <td>
           <div class="position-relative">
-            <button class="btn btn-sm btn-danger delete-match-button js-delete-match-button" data-match-id="${matches[i].id}">
+            <button class="btn btn-sm btn-danger delete-match-button js-delete-match-button" data-match-id="${matches[i].id}" title="Apagar partida">
               <i class="bi bi-trash"></i>
             </button>
             ${matches[i].start} → ${matches[i].goal}
           </div>
         </td>
         <td>${playerDataHTML}</td>
-        <td>${matches[i].date}</td>
+        <td>${dayjs(matches[i].date).format('DD/MM/YYYY')}</td>
       </tr>
     `;
   };
