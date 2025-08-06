@@ -1,3 +1,7 @@
+.player-clicks-box {
+  background-color: antiquewhite;
+}
+
 .podium-points-text {
   margin-top: 0px;
   font-size: small;
@@ -61,5 +65,5 @@
 }
 
 .player-clicks-field {
-  width: 3rem;
+  width: 3.5rem;
 }

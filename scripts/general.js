@@ -14,15 +14,16 @@ function renderAddMatchForm() {
   let html = '';
 
   html += `
-    <label>Wiki inicial: <input type="text" required name="start-wiki" placeholder="Título da página" class="start-wiki-field"></label><br>
-      <label>Wiki final: <input type="text" required name="goal-wiki" placeholder="Título da página" class="goal-wiki-field"></label>
+    <input type="text" required name="start-wiki" placeholder="Título da página" class="form-control start-wiki-field">
+    <div>v</div>
+    <input type="text" required name="goal-wiki" placeholder="Título da página" class="form-control goal-wiki-field">
   `
 
-  // This bit generates a number field for each player registered in 'players' 
+  // This bit generates a number field for each player registered in 'players'
   players.forEach(player => {
     html += `
-      <div class="py-1">
-        <label>${player.name}: <input type="number" name="${player.id}-clicks" placeholder="00" class="player-clicks-field"></label>
+      <div class="player-clicks-box py-1">
+        <label>${player.name}: <input type="number" name="${player.id}-clicks" placeholder="00" class="form-control-sm player-clicks-field"></label>
       </div>
     `;
   });

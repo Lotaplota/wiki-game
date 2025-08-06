@@ -4,3 +4,4 @@
 - [x] highlight the winner of the match
 - [x] add a little banner at the side of the winner to show how many points it made
 - [ ] restyle the podium; maybe displaying the first place on the left
+- [ ] customize the matches form with bootstrap
