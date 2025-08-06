@@ -3,6 +3,13 @@
   font-size: small;
 }
 
+.winner {
+  background-color: rgb(144, 207, 84);
+  border: solid white 1px;
+  border-radius: .25rem;
+  box-sizing: border-box;
+}
+
 .card {
     /* box-shadow: 2px 2px 4px rgba(0, 0, 0, .25); */
 }

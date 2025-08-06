@@ -95,8 +95,13 @@ export function renderMatchList() {
         }
       })
 
+      let isWinner = matches[i].winners.includes(matchingPlayer.id)
+      ? 'winner'
+      : ''
+      ;
+
       playerDataHTML += `
-        <div class="player-score">
+        <div class="player-score ${isWinner}">
           ${matchingPlayer.name}: ${participant.clicks}
         </div>
       `
