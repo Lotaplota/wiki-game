@@ -1,6 +1,6 @@
 - [x] implement the addMatch functionality
 - [x] implement an Add Player button
 - [/] add a delete match button, maybe on a hover after the user clicks the pencil button
-- [ ] highlight the winner of the match
-- [ ] add a little banner at the side of the winner to show how many points it made
+- [x] highlight the winner of the match
+- [x] add a little banner at the side of the winner to show how many points it made
 - [ ] restyle the podium; maybe displaying the first place on the left

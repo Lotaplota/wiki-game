@@ -119,7 +119,9 @@ export function renderMatchList() {
       <tr>
         <td>
           <div class="position-relative">
-            <button class="btn btn-sm btn-danger delete-match-button js-delete-match-button" data-match-id="${matches[i].id}">Del</button>
+            <button class="btn btn-sm btn-danger delete-match-button js-delete-match-button" data-match-id="${matches[i].id}">
+              <i class="bi bi-trash"></i>
+            </button>
             ${matches[i].start} → ${matches[i].goal}
           </div>
         </td>
