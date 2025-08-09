@@ -173,6 +173,8 @@ export function deleteMatch(matchId) {
   if (matchIndex) {
     matches.splice(matchIndex, 1);
     saveMatches();
+    updateScore();
     renderMatchList();
+    renderPodium();
   }
 }
